@@ -1,10 +1,18 @@
-var start = document.getElementById('start');
-var header = document.getElementById('header');
-var para1 = document.getElementById('para1');
+let start = document.getElementById('start');
+let header = document.getElementById('header');
+let para1 = document.getElementById('para1');
+
+// line 81
+let incrementEl = document.querySelector("#increment");
+let decrementEl = document.querySelector("#decrement");
+let countEl = document.querySelector("#count");
+
 let currentQuesIndex = 0;
 
 
-var questions = [{
+
+
+let questions = [{
     text: 'What does HTML stand for?',
     options: ['hypertext markup language', 'hyperloop makeup language', 'hypertank markdown language', 'none of the above'],
     correct: 'hypertext markup language'
@@ -34,17 +42,54 @@ let currentQues = questions[currentQuesIndex];
 
 start.onclick = StartQuiz;
 
+let secondsLeft = 10;
+timerInterval; 
+
 // function 
 function StartQuiz() {
     start.style.display = 'none';
     header.style.display = 'none';
-    para1.style.display = 'none';
 
     for (let i = 0; i < questions[0].length; i++) {
         const question = questions[i];
-        
-    }
-
+    };
     console.log(StartQuiz);
 };
 
+// Timer that counts down from 45
+function countdown() {
+    var timeLeft = 45;
+  
+    var timeInterval = setInterval(function () {
+      if (timeLeft > 1) {
+        
+        timerEl.textContent = timeLeft + ' seconds remaining';
+        timeLeft--;
+      } else if (timeLeft === 1) {
+        
+        timerEl.textContent = timeLeft + ' second remaining';
+        timeLeft--;
+      } else {
+        timerEl.textContent = '';
+       
+        clearInterval(timeInterval);
+        displayMessage();
+      };
+    }, 1000);
+  };
+
+
+  // unit4 lesson12
+function setCounterText() {
+    countEl.textContent = count;
+  }
+  incrementEl.addEventListener("click", function() {
+    count++;
+    setCounterText();
+  });
+  decrementEl.addEventListener("click", function() {
+    if (count > 0) {
+      count--;
+      setCounterText();
+    }
+  });
